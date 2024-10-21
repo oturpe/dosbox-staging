@@ -42,12 +42,12 @@ jobs:
           - name: ARM64 (Ubuntu 20.04)
             arch: aarch64
             distro: ubuntu20.04
-          - name: s390x (Fedora)
+          - name: s390x (Debian "bookworm")
             arch: s390x
-            distro: fedora_latest
-          - name: ppc64le (Fedora)
+            distro: bookworm
+          - name: ppc64le (Debian "bookworm")
             arch: ppc64le
-            distro: fedora_latest
+            distro: bookworm
 
     steps:
       - uses: actions/checkout@v4
@@ -83,7 +83,7 @@ jobs:
           # no secrets are present in the container state or logs.
           install: |
             case "${{ matrix.distro }}" in
-              ubuntu*|jessie|stretch|buster|bullseye)
+              ubuntu*|jessie|stretch|buster|bullseye|bookworm)
                 # we only care about issues
                 apt-get -qq update  < /dev/null > /dev/null
                 apt-get -qq install git curl findutils procps tar zstd screenfetch \
